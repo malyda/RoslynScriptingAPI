@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoslynScriptingAPI", "RoslynScriptingAPI\RoslynScriptingAPI.csproj", "{DF4AD5C2-4B9C-4175-9B5E-7A571E87037F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication", "ConsoleApplication\ConsoleApplication.csproj", "{1F94D1FC-0FC7-4E14-92A0-0ACFA7A7670F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp", "WpfApp\WpfApp.csproj", "{FE363101-8766-4594-AA72-D4BA376990CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{DF4AD5C2-4B9C-4175-9B5E-7A571E87037F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF4AD5C2-4B9C-4175-9B5E-7A571E87037F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF4AD5C2-4B9C-4175-9B5E-7A571E87037F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F94D1FC-0FC7-4E14-92A0-0ACFA7A7670F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F94D1FC-0FC7-4E14-92A0-0ACFA7A7670F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F94D1FC-0FC7-4E14-92A0-0ACFA7A7670F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F94D1FC-0FC7-4E14-92A0-0ACFA7A7670F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE363101-8766-4594-AA72-D4BA376990CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE363101-8766-4594-AA72-D4BA376990CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE363101-8766-4594-AA72-D4BA376990CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE363101-8766-4594-AA72-D4BA376990CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
