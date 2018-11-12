@@ -25,7 +25,7 @@ namespace ConsoleApplication
             Console.WriteLine($"For Globals.SomeValue is default:{initValue}");
 
            string newValue = await executeSample.UseGlobalDataInScriptAsync(initValue,
-               "SomeVariable = \"Changed inside script\";");
+               "PersonInGlobals.Name = \"Person Name changed inside script\"; SomeVariable = \"new value\";");
 
             Console.WriteLine($"Inserted script changed value to: {newValue}");
 

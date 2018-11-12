@@ -9,6 +9,7 @@ namespace RoslynScriptingAPI
     /// </summary>
     public class Globals
     {
-        public string SomeVariable = default(string);
+        public string SomeVariable { get; set; }
+        public Person PersonInGlobals { get; set; }
     }
 }

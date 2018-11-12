@@ -54,8 +54,7 @@ namespace WpfApp
 
             string initValue = "default Value";
 
-            string newValue = await executeSample.UseGlobalDataInScriptAsync(initValue,
-                "SomeVariable = \"Changed inside script\";");
+            string newValue = await executeSample.UseGlobalDataInScriptAsync(initValue);
 
             GlobalsResultLabel.Content = $"Inserted script changed value to: {newValue}";
 

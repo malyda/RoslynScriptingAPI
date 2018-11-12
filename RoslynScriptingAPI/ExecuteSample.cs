@@ -8,6 +8,7 @@ namespace RoslynScriptingAPI
 {
     /// <summary>
     /// https://github.com/dotnet/roslyn/wiki/Scripting-API-Samples#multi
+    /// https://blogs.msdn.microsoft.com/cdndevs/2015/12/01/adding-c-scripting-to-your-development-arsenal-part-1/
     /// </summary>
     public class ExecuteSample
     {
@@ -22,17 +23,20 @@ namespace RoslynScriptingAPI
         /// <param name="defaultValue">Set init value for property</param>
         /// <param name="code">Code interacting with properties of Globals.cs</param>
         /// <returns></returns>
-        public async Task<string> UseGlobalDataInScriptAsync(string defaultValue = "now not changed",
-            string code = "SomeVariable = \"Changed inside script\";")
+        public async Task<string> UseGlobalDataInScriptAsync(string defaultValue = "Person default name",
+            string code = "PersonInGlobals.Name = \"Person Name changed inside script\"; SomeVariable = \"new value\";")
         {
             Globals globals = new Globals();
             globals.SomeVariable = defaultValue;
+            globals.PersonInGlobals = new Person();
 
+            var metadata = MetadataReference.CreateFromFile(typeof(Person).Assembly.Location);
             await CSharpScript.RunAsync(
                 code
+                , options: ScriptOptions.Default.WithReferences(metadata)
                 , globals: globals);
 
-            return globals.SomeVariable;
+            return $"SomeVariable value: {globals.SomeVariable} PersonInGlobals.Name value = {globals.PersonInGlobals.Name}";
         }
 
         /// <summary>
