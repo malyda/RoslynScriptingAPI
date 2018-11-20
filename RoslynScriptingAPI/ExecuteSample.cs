@@ -2,6 +2,7 @@
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace RoslynScriptingAPI
@@ -24,19 +25,31 @@ namespace RoslynScriptingAPI
         /// <param name="code">Code interacting with properties of Globals.cs</param>
         /// <returns></returns>
         public async Task<string> UseGlobalDataInScriptAsync(string defaultValue = "Person default name",
-            string code = "PersonInGlobals.Name = \"Person Name changed inside script\"; SomeVariable = \"new value\";")
+            string code = 
+            "PersonInGlobals.Name = \"Person Name changed inside script\"; " +
+            "SomeVariable = \"new value\";"+
+            "PersonInGlobals.Items.Add(new Item(){ItemName =\"Item Name\"});")
         {
             Globals globals = new Globals();
             globals.SomeVariable = defaultValue;
             globals.PersonInGlobals = new Person();
 
-            var metadata = MetadataReference.CreateFromFile(typeof(Person).Assembly.Location);
-            await CSharpScript.RunAsync(
-                code
-                , options: ScriptOptions.Default.WithReferences(metadata)
-                , globals: globals);
+            var metadata = MetadataReference.CreateFromFile(globals.GetType().Assembly.Location);
+            try
+            {
+                await CSharpScript.RunAsync(
+                    code
+                    , options: ScriptOptions.Default
+                            .WithReferences(metadata)
+                            .WithImports((typeof(ExecuteSample).Namespace))
+                    , globals: globals);
 
-            return $"SomeVariable value: {globals.SomeVariable} PersonInGlobals.Name value = {globals.PersonInGlobals.Name}";
+                return $"SomeVariable value: {globals.SomeVariable} PersonInGlobals.Name value = {globals.PersonInGlobals.Name}";
+            }
+            catch (CompilationErrorException e)
+            {
+                return string.Join(Environment.NewLine, e.Diagnostics);
+            }
         }
 
         /// <summary>

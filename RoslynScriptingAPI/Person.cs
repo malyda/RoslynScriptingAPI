@@ -7,5 +7,8 @@ namespace RoslynScriptingAPI
     public class Person
     {
         public string Name { get; set; }
+
+        public List<Item> Items { get; set; } = new List<Item>();
+
     }
 }
