@@ -41,7 +41,7 @@ namespace RoslynScriptingAPI
                     code
                     , options: ScriptOptions.Default
                             .WithReferences(metadata)
-                            .WithImports((typeof(ExecuteSample).Namespace))
+                            .WithImports(GetType().Namespace)
                     , globals: globals);
 
                 return $"SomeVariable value: {globals.SomeVariable} PersonInGlobals.Name value = {globals.PersonInGlobals.Name}";
